@@ -291,11 +291,11 @@ export default class Game {
 
   public static changeTurnImage(): void {
     if (Game.turn == "x") {
-      Game.turnImageX?.classList.remove("d-none");
-      Game.turnImageO?.classList.add("d-none");
+      Game.turnImageX && (Game.turnImageX.style.display = "block");
+      Game.turnImageO && (Game.turnImageO.style.display = "none");
     } else {
-      Game.turnImageO?.classList.remove("d-none");
-      Game.turnImageX?.classList.add("d-none");
+      Game.turnImageX && (Game.turnImageX.style.display = "none");
+      Game.turnImageO && (Game.turnImageO.style.display = "block");
     }
   }
   public static getMarkImageOutlineSource(): string {

@@ -57,7 +57,8 @@ body {
 
     border-radius: $border-radius-1;
 
-    svg {
+    svg,
+    img {
       max-width: 30px;
       max-height: 30px;
       fill: $silver;

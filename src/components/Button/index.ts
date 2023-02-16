@@ -17,13 +17,15 @@ export class Button extends HTMLElement {
   }
 
   connectedCallback() {
-    this.props = this.getAttributeNames().reduce((acc: StyleProps, currentValue) => {
-      let obj = { ...acc };
+    let attributes = this.getAttributeNames();
+    this.props = attributes.reduce((acc, currentValue) => {
+      let obj: any = { ...acc };
 
       if (currentValue == "no-effect") {
         obj["noEffect"] = true;
       } else {
         let key = currentValue;
+
         obj[key] = true;
       }
 

@@ -3,24 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="/public/assets/images/svg/logo.svg" type="image/x-icon" />
+    <link rel="shortcut icon" href="/assets/images/svg/logo.svg" type="image/x-icon" />
     <title>Tic Tac Toe</title>
+
+    <script src="/src/scripts/svgInject.js"></script>
   </head>
   <body>
     <main id="app">
       <div class="container">
         <div data-game-choice class="w-100 my-3 d-flex flex-column align-items-center justify-content-center">
-          <img class="logo" src="/public/assets/images/svg/logo.svg" alt="Logo" />
+          <img class="logo" src="/assets/images/svg/logo.svg" alt="Logo" />
           <div class="w-100 mt-4">
             <card-component>
               <div class="game-choice">
                 <h5>PICK PLAYER 1'S MARK</h5>
                 <div class="game-choice__container">
                   <div data-mark="x" class="game-choice__item game-choice__item--selected">
-                    <img onload="SVGInject(this)" src="/public/assets/images/svg/icon-x-default.svg" alt="Icon X" />
+                    <img onload="SVGInject(this)" src="/assets/images/svg/icon-x-default.svg" alt="Icon X" />
                   </div>
                   <div data-mark="o" class="game-choice__item">
-                    <img onload="SVGInject(this)" src="/public/assets/images/svg/icon-o-default.svg" alt="Icon O" />
+                    <img onload="SVGInject(this)" src="/assets/images/svg/icon-o-default.svg" alt="Icon O" />
                   </div>
                 </div>
                 <p class="mb-0">WHAT YOU CHOICE GOES FIRST</p>
@@ -38,13 +40,13 @@
         </div>
         <div class="game-play d-none" data-game-play>
           <div class="game-play__header">
-            <img class="logo" src="/public/assets/images/svg/logo.svg" alt="Logo" />
+            <img class="logo" src="/assets/images/svg/logo.svg" alt="Logo" />
             <div class="game-play__header-turn">
               <img
                 onload="SVGInject(this)"
                 width="20px"
                 height="20px"
-                src="/public/assets/images/svg/icon-x-default.svg"
+                src="/assets/images/svg/icon-x-default.svg"
                 alt="turn"
                 data-turn-image="x"
               />
@@ -52,7 +54,7 @@
                 onload="SVGInject(this)"
                 width="20px"
                 height="20px"
-                src="/public/assets/images/svg/icon-o-default.svg"
+                src="/assets/images/svg/icon-o-default.svg"
                 alt="turn"
                 data-turn-image="o"
               />
@@ -65,7 +67,7 @@
                   onload="SVGInject(this)"
                   width="25px"
                   height="25px"
-                  src="/public/assets/images/svg/icon-restart.svg"
+                  src="/assets/images/svg/icon-restart.svg"
                   alt="restart"
                 />
               </div>
@@ -116,7 +118,7 @@
         <div data-modal-win-content class="mb-1 d-flex flex-column align-items-center">
           <h6 class="mb-5">PLAYER 1 WIN</h6>
           <div class="d-flex align-items-center gap-2">
-            <img width="40px" height="40px" src="/public/assets/images/svg/icon-x.svg" alt="Mark" />
+            <img width="40px" height="40px" src="/assets/images/svg/icon-x.svg" alt="Mark" />
             <h1 class="mb-0 title-win-game">TAKES THE ROUND</h1>
           </div>
         </div>

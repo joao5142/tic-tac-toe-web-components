@@ -87,7 +87,7 @@ export default class Game {
     Game.gameBodyItems.forEach((element) => {
       element.addEventListener("mouseover", () => {
         if (!element.dataset.fill) {
-          element.style.backgroundImage = `url(/public/assets/images/svg/${Game.getMarkImageOutlineSource()})`;
+          element.style.backgroundImage = `url(/assets/images/svg/${Game.getMarkImageOutlineSource()})`;
           element.style.backgroundSize = "50%";
           element.style.backgroundPosition = "center";
           element.style.backgroundRepeat = "no-repeat";
@@ -102,7 +102,7 @@ export default class Game {
       element.addEventListener("click", () => {
         let isItemFill = element.dataset.fill;
         if (!isItemFill) {
-          element.style.backgroundImage = `url(/public/assets/images/svg/${Game.getMarkImageFillSource()})`;
+          element.style.backgroundImage = `url(/assets/images/svg/${Game.getMarkImageFillSource()})`;
           element.dataset.fill = "true";
           element.style.pointerEvents = "none";
           element.dataset.mark = Game.turn;
@@ -265,7 +265,7 @@ export default class Game {
     }
   }
   public static setDataToModalWhenHasWinner(h6ModalEl: HTMLElement | null, imgModalEl: HTMLImageElement | null): void {
-    let stringUrl = `/public/assets/images/svg/icon-${Game.turn}.svg`;
+    let stringUrl = `/assets/images/svg/icon-${Game.turn}.svg`;
 
     let stringPlayerWin = "";
 

@@ -20,7 +20,7 @@ export class Modal extends HTMLElement {
 
   handleClick() {
     this.addEventListener("click", (e) => {
-      if (this === e.target) {
+      if (this === e.target && this.dataset.modal !== "win") {
         this.classList.add("d-none");
       }
     });

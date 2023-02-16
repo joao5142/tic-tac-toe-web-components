@@ -220,11 +220,11 @@ export default class Game {
         }, 1000);
       });
       return;
+    } else {
+      let isTied = Game.checkTie();
+
+      isTied && Game.finishGame(isTied);
     }
-
-    let isTied = Game.checkTie();
-
-    isTied && Game.finishGame(isTied);
   }
   public static setItemsToDisabled() {
     Game.gameBodyItems.forEach((item) => {

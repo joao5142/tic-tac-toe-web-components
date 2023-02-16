@@ -1,0 +1,148 @@
+@import "~bootstrap/scss/bootstrap";
+@import "./_reset.scss";
+@import "./_global.scss";
+body {
+  background: $dark-navy;
+}
+#app,
+body {
+  height: 100vh;
+  font-size: 1.2rem;
+  color: $silver;
+
+  font-family: "Outfit", sans-serif;
+}
+#app,
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.container {
+  max-width: 500px;
+  min-width: 500px;
+  width: 500px;
+}
+.logo {
+  height: 34px;
+}
+
+.game-choice {
+  text-align: center;
+
+  h5 {
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+
+  &__container {
+    background: $dark-navy;
+    padding: 13px 8px;
+    margin: 20px 0px 15px 0px;
+
+    border-radius: $border-radius-1;
+
+    display: flex;
+  }
+
+  &__item {
+    cursor: pointer;
+
+    flex: 1;
+
+    text-align: center;
+
+    padding: 10px 5px;
+
+    border-radius: $border-radius-1;
+
+    svg {
+      max-width: 30px;
+      max-height: 30px;
+      fill: $silver;
+    }
+
+    &--selected {
+      background: $silver;
+      svg {
+        fill: $semi-dark-navy;
+      }
+    }
+    &:hover:not(&--selected) {
+      background: $semi-dark-navy;
+    }
+  }
+
+  p {
+    font-size: 0.85rem;
+    opacity: 0.4;
+    font-weight: bold;
+  }
+}
+
+.game-play {
+  width: 100%;
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    > * {
+      flex: 1;
+    }
+  }
+  &__header-turn,
+  &__header-restart {
+    padding: 10px 15px;
+    height: 60px;
+    max-height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: $border-radius-1;
+
+    font-weight: bold;
+    text-align: center;
+  }
+  &__header-turn {
+    background: $semi-dark-navy;
+    box-shadow: inset 0 -0.2rem 0 #111c22;
+
+    svg {
+      fill: $silver;
+    }
+  }
+  &__header-restart {
+    width: 70px;
+
+    background: $silver;
+    box-shadow: inset 0 -0.2rem 0 rgba(0, 0, 0, 0.4);
+
+    cursor: pointer;
+  }
+
+  &__body,
+  &__header,
+  &__footer {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  &__body {
+    min-height: 500px;
+    grid-template-rows: repeat(3, 1fr);
+    > * {
+      cursor: pointer;
+    }
+  }
+  &__footer span {
+    font-size: 1rem;
+    opacity: 0.85;
+  }
+  &__footer h3 {
+    font-weight: bold;
+  }
+}

@@ -1,0 +1,54 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: block;
+  padding: 5px 35px;
+  margin: 20px 0px;
+  max-width: 100%;
+
+  border-radius: $border-radius-1;
+  box-shadow: inset 0 -0.5rem 0 rgb(0, 0, 0, 0.4);
+
+  color: $dark-navy;
+  font-weight: bold;
+  text-align: center;
+
+  cursor: pointer;
+
+  transition: 0.4s ease-in-out;
+}
+
+.button--yellow {
+  background: $light-yellow;
+
+  &:hover {
+    background: $light-yellow-hover;
+  }
+}
+
+.button--blue {
+  background: $light-blue;
+
+  &:hover {
+    background: $light-blue-hover;
+  }
+}
+
+.button--gray {
+  background: $silver;
+
+  &:hover {
+    background: $silver-hover;
+  }
+}
+
+.button--no-effect {
+  box-shadow: none;
+
+  pointer-events: none;
+}
+
+.button--disabled {
+  pointer-events: none;
+}

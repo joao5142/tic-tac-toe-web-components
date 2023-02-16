@@ -15,5 +15,5 @@
     "noImplicitReturns": true,
     "skipLibCheck": true
   },
-  "include": ["src", "typings"]
+  "include": ["src", "typings", "public/scripts/svgInject.js"]
 }

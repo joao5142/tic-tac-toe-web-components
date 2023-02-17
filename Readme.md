@@ -26,7 +26,7 @@
 <img margin-bottom="20px" src="/public/assets/images/readme1.PNG">
 <img margin-bottom="20px" src="/public/assets/images/readme2.PNG">
 <img margin-bottom="20px" src="/public/assets/images/readme3.PNG">
-<h4  style="display: inline_block">Visualização do site :</h4><a style="display: inline_block" target="blank" href="https://acessibilidade-front-end.netlify.app/">Preview no Netlify</a>
+<h4  style="display: inline_block">Visualização do site :</h4><a style="display: inline_block" target="blank" href="https://main--jaotictactoe.netlify.app/">Preview no Netlify</a>
 
 <h2>🧑🏻‍ Autor</h2>
 <p>Feito por João paulo</p>

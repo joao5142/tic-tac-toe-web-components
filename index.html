@@ -87,18 +87,24 @@
             <card-component data-value="8"></card-component>
           </div>
           <div class="game-play__footer mt-2">
-            <button-component no-effect data-button-player1-points
-              ><span><span data-player1-mark>X</span>(p1)</span>
-              <h3 data-player1-points>0</h3></button-component
-            >
-            <button-component no-effect gray
-              ><span>Ties</span>
-              <h3 data-tie-points>0</h3></button-component
-            >
-            <button-component data-button-player2-points no-effect
-              ><span><span data-player2-mark>O</span>(p2)</span>
-              <h3 data-player2-points>0</h3></button-component
-            >
+            <button-component no-effect data-button-player1-points>
+              <div class="py-0 py-md-1">
+                <span><span data-player1-mark>X</span>(p1)</span>
+                <h3 class="mb-0" data-player1-points>0</h3>
+              </div>
+            </button-component>
+            <button-component no-effect gray>
+              <div class="py-0 py-md-1">
+                <span>Ties</span>
+                <h3 class="mb-0" data-tie-points>0</h3>
+              </div>
+            </button-component>
+            <button-component data-button-player2-points no-effect>
+              <div class="py-0 py-md-1">
+                <span><span data-player2-mark>O</span>(p2)</span>
+                <h3 class="mb-0" data-player2-points>0</h3>
+              </div>
+            </button-component>
           </div>
         </div>
       </div>

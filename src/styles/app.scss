@@ -12,6 +12,17 @@ body {
 
   font-family: "Outfit", sans-serif;
 }
+* {
+  @media (max-width: 300px) {
+    & {
+      font-size: 0.9rem;
+    }
+    * svg {
+      width: 15px;
+      height: 15px;
+    }
+  }
+}
 #app,
 .container {
   display: flex;
@@ -23,9 +34,25 @@ body {
   max-width: 500px;
   min-width: 500px;
   width: 500px;
+
+  @media (max-width: 520px) {
+    max-width: 500px;
+    min-width: 100%;
+    width: 100%;
+  }
 }
 .logo {
   height: 34px;
+  @media (max-width: 300px) {
+    & {
+      width: 50px;
+    }
+  }
+  @media (max-width: 270px) {
+    & {
+      width: 30px;
+    }
+  }
 }
 
 .game-choice {
@@ -107,6 +134,25 @@ body {
 
     font-weight: bold;
     text-align: center;
+
+    @media (max-width: 300px) {
+      & {
+        padding: 10px;
+        height: 50px;
+      }
+    }
+  }
+  &__header-restart {
+    svg {
+      width: 25px;
+      height: 25px;
+    }
+    @media (max-width: 300px) {
+      svg {
+        width: 15px;
+        height: 15px;
+      }
+    }
   }
   &__header-turn {
     background: $semi-dark-navy;
@@ -138,6 +184,17 @@ body {
     grid-template-rows: repeat(3, 1fr);
     > * {
       cursor: pointer;
+    }
+
+    @media (max-width: 500px) {
+      & {
+        min-height: 300px;
+      }
+    }
+    @media (max-width: 300px) {
+      & {
+        min-height: 250px;
+      }
     }
   }
   &__footer span {

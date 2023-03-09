@@ -245,7 +245,7 @@ export default class Game {
     if (isTied) {
       Game.setDataToModalWhenHasTie(h1ModalEl, h6ModalEl, imgModalEl);
     } else {
-      Game.setDataToModalWhenHasWinner(h6ModalEl, imgModalEl);
+      Game.setDataToModalWhenHasWinner(h6ModalEl, h1ModalEl, imgModalEl);
     }
 
     Game.modalWin?.classList.remove("d-none");
@@ -264,7 +264,12 @@ export default class Game {
       imgModalEl?.classList.add("d-none");
     }
   }
-  public static setDataToModalWhenHasWinner(h6ModalEl: HTMLElement | null, imgModalEl: HTMLImageElement | null): void {
+
+  public static setDataToModalWhenHasWinner(
+    h6ModalEl: HTMLElement | null,
+    h1ModalEl: HTMLElement | null,
+    imgModalEl: HTMLImageElement | null
+  ): void {
     let stringUrl = `/assets/images/svg/icon-${Game.turn}.svg`;
 
     let stringPlayerWin = "";
@@ -280,6 +285,7 @@ export default class Game {
     }
 
     h6ModalEl && (h6ModalEl.innerText = stringPlayerWin);
+    h1ModalEl && (h1ModalEl.innerText = "TAKES THE ROUND");
     imgModalEl && (imgModalEl.src = stringUrl);
   }
 

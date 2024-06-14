@@ -5,6 +5,8 @@ export class Modal extends HTMLElement {
     super();
   }
 
+  private clickEventHandle: any;
+
   connectedCallback() {
     this.className = style.modal;
 
@@ -26,11 +28,17 @@ export class Modal extends HTMLElement {
   }
 
   initClickEvent() {
-    this.addEventListener("click", (e) => {
-      if (this === e.target && this.dataset.modal !== "win") {
+    this.clickEventHandle = (event: MouseEvent) => {
+      if (this === event.target && this.dataset.modal !== "win") {
         this.classList.add("d-none");
       }
-    });
+    };
+
+    this.addEventListener("click", this.clickEventHandle);
+  }
+  //avoid memory leak
+  disconectedCallback() {
+    this.removeEventListener("click", this.clickEventHandle);
   }
 }
 

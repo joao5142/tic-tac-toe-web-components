@@ -21,10 +21,12 @@ export class Modal extends HTMLElement {
 
   getHTMLElement() {
     return ` 
-        <div class="${style["modal__container"]}">
-          <div class="${style["modal__content"]}">
-            ${this.innerHTML}
-          </div></div>`;
+      <div class="${style["modal__container"]}">
+        <div class="${style["modal__content"]}">
+          ${this.innerHTML}
+        </div>
+      </div>
+    `;
   }
 
   initClickEvent() {

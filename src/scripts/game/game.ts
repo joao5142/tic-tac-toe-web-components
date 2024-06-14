@@ -228,14 +228,15 @@ export default class Game {
       let hasWinner = checkSubset(arrayOfMarkPositions, combination);
       if (hasWinner) {
         currentPlayWin = true;
-        this.fillItems(combination);
+        this.fillSquareItemsOnWin(combination);
         break;
       }
     }
 
     return currentPlayWin;
   }
-  public fillItems(combination: number[]) {
+
+  public fillSquareItemsOnWin(combination: number[]) {
     this.gameBodyItemsArray
       .filter((mark) => {
         return (
@@ -260,14 +261,17 @@ export default class Game {
 
   public async checkFinishGame<T>(): Promise<T | void> {
     let hasWinner = this.checkWinner();
+
     if (hasWinner) {
       this.setItemsToDisabled();
+
       await new Promise((resolve, _) => {
         setTimeout(() => {
           this.finishGame(false);
           resolve(true);
         }, 1000);
       });
+
       return;
     } else {
       let isTied = this.checkTie();

@@ -5,4 +5,5 @@ import "@/components/Modal";
 
 import GameChoice from "./game/gameChoice";
 
-GameChoice.init();
+const game = new GameChoice();
+game.init();

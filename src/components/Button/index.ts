@@ -8,16 +8,36 @@ type StyleProps = {
   disabled?: boolean;
 };
 
-type stringProps = "yellow" | "blue" | "gray" | "noEffect" | "disabled";
+const buttonStyleClasses: Record<string, string> = {
+  blue: "button--blue",
+  yellow: "button--yellow",
+  gray: "button--gray",
+  noEffect: "button--no-effect",
+  disabled: "button--disabled",
+};
 
 export class Button extends HTMLElement {
   private props: StyleProps = {};
+
   constructor() {
     super();
   }
 
   connectedCallback() {
+    this.setPropsValue();
+
+    this.classList.add(style.button);
+
+    this.getClassStyle();
+  }
+
+  static get observedAttributes() {
+    return ["yellow", "blue"];
+  }
+
+  setPropsValue() {
     let attributes = this.getAttributeNames();
+
     this.props = attributes.reduce((acc, currentValue) => {
       let obj: any = { ...acc };
 
@@ -31,37 +51,15 @@ export class Button extends HTMLElement {
 
       return obj;
     }, {});
-
-    this.classList.add(style.button);
-
-    this.getClassStyle();
-  }
-  attributeChangedCallback(name: stringProps) {
-    if (!(name in this.props)) {
-      this.props[name] = true;
-      this.getClassStyle();
-    }
-  }
-  static get observedAttributes() {
-    return ["yellow", "blue"];
   }
 
   getClassStyle() {
     let props = this.props;
-    if (props.blue) {
-      this.classList.add(style["button--blue"]);
-    }
-    if (props.yellow) {
-      this.classList.add(style["button--yellow"]);
-    }
-    if (props.gray) {
-      this.classList.add(style["button--gray"]);
-    }
-    if (props.noEffect) {
-      this.classList.add(style["button--no-effect"]);
-    }
-    if (props.disabled) {
-      this.classList.add(style["button--disabled"]);
+
+    for (let property in props) {
+      const className = buttonStyleClasses[property];
+      const propertyValue = style[className];
+      this.classList.add(propertyValue);
     }
   }
 }

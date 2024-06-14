@@ -10,8 +10,11 @@ export class Card extends HTMLElement {
     this.className = style.card;
   }
 
-  attributeChangedCallback(name: stringProps, odlValue: string, newValue: string) {
-    console.log(name, odlValue, newValue);
+  attributeChangedCallback(
+    _name: stringProps,
+    _odlValue: string,
+    newValue: string
+  ) {
     if (newValue == "true") {
       this.classList.add(style["card--blue"]);
     } else {

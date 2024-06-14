@@ -10,84 +10,125 @@ const WINNING_COMBINATIONS = [
 ];
 
 export default class Game {
-  public static turn: string = "";
-  private static player1: string = "";
+  public turn: string = "";
+  private player1: string = "";
 
-  private static gameBodyItems: NodeListOf<HTMLElement> = document.querySelectorAll("#game-play-body > *");
-  private static gameBodyItemsArray: Array<HTMLElement> = Array.from(Game.gameBodyItems);
+  private gameBodyItems: NodeListOf<HTMLElement> = document.querySelectorAll(
+    "#game-play-body > *"
+  );
 
-  private static turnImageX: HTMLImageElement | null = document.querySelector("[data-turn-image='x']");
-  private static turnImageO: HTMLImageElement | null = document.querySelector("[data-turn-image='o']");
+  private gameBodyItemsArray: Array<HTMLElement> = Array.from(
+    this.gameBodyItems
+  );
 
-  private static modalRestart: HTMLElement | null = document.querySelector("[data-modal='restart']");
-  private static modalWin: HTMLElement | null = document.querySelector("[data-modal='win']");
+  private turnImageX: HTMLImageElement | null = document.querySelector(
+    "[data-turn-image='x']"
+  );
 
-  private static buttonOpenModalRestart: HTMLElement | null = document.querySelector("[data-open-restart-modal]");
-  private static buttonCancelRestart: HTMLElement | null = document.querySelector("[data-cancel-restart]");
-  private static buttonRestart: HTMLElement | null = document.querySelector("[data-restart]");
+  private turnImageO: HTMLImageElement | null = document.querySelector(
+    "[data-turn-image='o']"
+  );
 
-  private static buttonQuitGame: HTMLElement | null = document.querySelector("[data-quit]");
-  private static buttonNextRound: HTMLElement | null = document.querySelector("[data-next-round]");
+  private modalRestart: HTMLElement | null = document.querySelector(
+    "[data-modal='restart']"
+  );
 
-  private static buttonPlayer1Points: HTMLElement | null = document.querySelector("[data-button-player1-points]");
-  private static buttonPlayer2Points: HTMLElement | null = document.querySelector("[data-button-player2-points]");
-  private static tiePointsEl: HTMLElement | null = document.querySelector("[data-tie-points]");
-  private static player1PointsEl: HTMLElement | null = document.querySelector("[data-player1-points]");
-  private static player2PointsEl: HTMLElement | null = document.querySelector("[data-player2-points]");
+  private modalWin: HTMLElement | null =
+    document.querySelector("[data-modal='win']");
 
-  private static tiePoints = 0;
-  private static player1Points = 0;
-  private static player2Points = 0;
+  private buttonOpenModalRestart: HTMLElement | null = document.querySelector(
+    "[data-open-restart-modal]"
+  );
 
-  public static init(turn: string): void {
-    Game.handleEventsItem();
+  private buttonCancelRestart: HTMLElement | null = document.querySelector(
+    "[data-cancel-restart]"
+  );
 
-    Game.handleClickRestart();
-    Game.handleClickCancelRestart();
+  private buttonRestart: HTMLElement | null =
+    document.querySelector("[data-restart]");
 
-    Game.handleClickQuitGame();
-    Game.handleClickNextRound();
+  private buttonQuitGame: HTMLElement | null =
+    document.querySelector("[data-quit]");
 
-    Game.handleClickButtonOpenRestartModal();
+  private buttonNextRound: HTMLElement | null =
+    document.querySelector("[data-next-round]");
 
-    Game.setInitialTurn(turn);
+  private buttonPlayer1Points: HTMLElement | null = document.querySelector(
+    "[data-button-player1-points]"
+  );
 
-    Game.changeTurnImage();
+  private buttonPlayer2Points: HTMLElement | null = document.querySelector(
+    "[data-button-player2-points]"
+  );
+
+  private tiePointsEl: HTMLElement | null =
+    document.querySelector("[data-tie-points]");
+
+  private player1PointsEl: HTMLElement | null = document.querySelector(
+    "[data-player1-points]"
+  );
+
+  private player2PointsEl: HTMLElement | null = document.querySelector(
+    "[data-player2-points]"
+  );
+
+  private tiePoints = 0;
+  private player1Points = 0;
+  private player2Points = 0;
+
+  public init(turn: string): void {
+    this.handleEventsItem();
+
+    this.handleClickRestart();
+    this.handleClickCancelRestart();
+
+    this.handleClickQuitGame();
+    this.handleClickNextRound();
+
+    this.handleClickButtonOpenRestartModal();
+
+    this.setInitialTurn(turn);
+
+    this.changeTurnImage();
   }
 
-  public static handleClickRestart() {
-    Game.buttonRestart?.addEventListener("click", () => {
-      Game.resetGame();
-      Game.modalRestart?.classList.add("d-none");
+  public handleClickRestart() {
+    this.buttonRestart?.addEventListener("click", () => {
+      this.resetGame();
+      this.modalRestart?.classList.add("d-none");
     });
   }
-  public static handleClickCancelRestart() {
-    Game.buttonCancelRestart?.addEventListener("click", () => {
-      Game.modalRestart?.classList.add("d-none");
+
+  public handleClickCancelRestart() {
+    this.buttonCancelRestart?.addEventListener("click", () => {
+      this.modalRestart?.classList.add("d-none");
     });
   }
-  public static handleClickQuitGame() {
-    Game.buttonQuitGame?.addEventListener("click", () => {
+
+  public handleClickQuitGame() {
+    this.buttonQuitGame?.addEventListener("click", () => {
       window.location.reload();
     });
   }
-  public static handleClickNextRound() {
-    Game.buttonNextRound?.addEventListener("click", () => {
-      Game.clearItemsInPage();
-      Game.modalWin?.classList.add("d-none");
-    });
-  }
-  public static handleClickButtonOpenRestartModal() {
-    Game.buttonOpenModalRestart?.addEventListener("click", () => {
-      Game.modalRestart?.classList.remove("d-none");
+
+  public handleClickNextRound() {
+    this.buttonNextRound?.addEventListener("click", () => {
+      this.clearItemsInPage();
+      this.modalWin?.classList.add("d-none");
     });
   }
 
-  public static handleEventsItem(): void {
-    Game.gameBodyItems.forEach((element) => {
+  public handleClickButtonOpenRestartModal() {
+    this.buttonOpenModalRestart?.addEventListener("click", () => {
+      this.modalRestart?.classList.remove("d-none");
+    });
+  }
+
+  public handleEventsItem(): void {
+    this.gameBodyItems.forEach((element) => {
       element.addEventListener("mouseover", () => {
         if (!element.dataset.fill) {
-          element.style.backgroundImage = `url(/assets/images/svg/${Game.getMarkImageOutlineSource()})`;
+          element.style.backgroundImage = `url(/assets/images/svg/${this.getMarkImageOutlineSource()})`;
           element.style.backgroundSize = "50%";
           element.style.backgroundPosition = "center";
           element.style.backgroundRepeat = "no-repeat";
@@ -102,56 +143,61 @@ export default class Game {
       element.addEventListener("click", () => {
         let isItemFill = element.dataset.fill;
         if (!isItemFill) {
-          element.style.backgroundImage = `url(/assets/images/svg/${Game.getMarkImageFillSource()})`;
+          element.style.backgroundImage = `url(/assets/images/svg/${this.getMarkImageFillSource()})`;
           element.dataset.fill = "true";
           element.style.pointerEvents = "none";
-          element.dataset.mark = Game.turn;
+          element.dataset.mark = this.turn;
 
           (async () => {
-            await Game.checkFinishGame();
-            Game.changeTurn();
+            await this.checkFinishGame();
+            this.changeTurn();
           })();
         }
       });
     });
   }
 
-  public static setInitialTurn(initialTurn: string): void {
-    Game.turn = initialTurn;
+  public setInitialTurn(initialTurn: string): void {
+    this.turn = initialTurn;
 
-    let player1TextEl: HTMLElement | null = document.querySelector("[data-player1-mark]");
-    let player2TextEl: HTMLElement | null = document.querySelector("[data-player2-mark]");
+    let player1TextEl: HTMLElement | null = document.querySelector(
+      "[data-player1-mark]"
+    );
+    let player2TextEl: HTMLElement | null = document.querySelector(
+      "[data-player2-mark]"
+    );
 
     let stringPlayer1 = initialTurn == "x" ? "X" : "O";
     let stringPlayer2 = stringPlayer1 == "X" ? "O" : "X";
 
     player1TextEl && (player1TextEl.innerText = stringPlayer1);
     player2TextEl && (player2TextEl.innerText = stringPlayer2);
-    Game.player1 = initialTurn;
+    this.player1 = initialTurn;
 
-    if (Game.buttonPlayer1Points && Game.buttonPlayer2Points) {
+    if (this.buttonPlayer1Points && this.buttonPlayer2Points) {
       if (initialTurn == "x") {
-        Game.buttonPlayer1Points.setAttribute("blue", "");
-        Game.buttonPlayer2Points.setAttribute("yellow", "");
+        this.buttonPlayer1Points.setAttribute("blue", "");
+        this.buttonPlayer2Points.setAttribute("yellow", "");
       } else {
-        Game.buttonPlayer1Points.setAttribute("yellow", "");
-        Game.buttonPlayer2Points.setAttribute("blue", "");
+        this.buttonPlayer1Points.setAttribute("yellow", "");
+        this.buttonPlayer2Points.setAttribute("blue", "");
       }
     }
   }
 
-  public static resetGame() {
-    Game.clearItemsInPage();
-    Game.player1Points = 0;
-    Game.player2Points = 0;
-    Game.tiePoints = 0;
+  public resetGame() {
+    this.clearItemsInPage();
+    this.player1Points = 0;
+    this.player2Points = 0;
+    this.tiePoints = 0;
 
-    Game.player1PointsEl && (Game.player1PointsEl.innerText = "0");
-    Game.player2PointsEl && (Game.player2PointsEl.innerText = "0");
-    Game.tiePointsEl && (Game.tiePointsEl.innerText = "0");
+    this.player1PointsEl && (this.player1PointsEl.innerText = "0");
+    this.player2PointsEl && (this.player2PointsEl.innerText = "0");
+    this.tiePointsEl && (this.tiePointsEl.innerText = "0");
   }
-  public static clearItemsInPage() {
-    Game.gameBodyItems.forEach((element) => {
+
+  public clearItemsInPage() {
+    this.gameBodyItems.forEach((element) => {
       element.removeAttribute("data-fill");
       element.removeAttribute("data-mark");
       element.removeAttribute("style");
@@ -164,10 +210,10 @@ export default class Game {
     });
   }
 
-  public static checkWinner(): boolean {
-    let arrayOfMarkPositions: number[] = Game.gameBodyItemsArray
+  public checkWinner(): boolean {
+    let arrayOfMarkPositions: number[] = this.gameBodyItemsArray
       .filter((mark) => {
-        return mark.dataset.mark == Game.turn;
+        return mark.dataset.mark == this.turn;
       })
       .map((mark) => Number(mark.dataset.value));
 
@@ -182,17 +228,20 @@ export default class Game {
       let hasWinner = checkSubset(arrayOfMarkPositions, combination);
       if (hasWinner) {
         currentPlayWin = true;
-        Game.fillItems(combination);
+        this.fillItems(combination);
         break;
       }
     }
 
     return currentPlayWin;
   }
-  public static fillItems(combination: number[]) {
-    Game.gameBodyItemsArray
+  public fillItems(combination: number[]) {
+    this.gameBodyItemsArray
       .filter((mark) => {
-        return mark.dataset.mark == Game.turn && combination.includes(Number(mark.dataset.value));
+        return (
+          mark.dataset.mark == this.turn &&
+          combination.includes(Number(mark.dataset.value))
+        );
       })
       .forEach((mark) => {
         mark.setAttribute("blue", "true");
@@ -202,40 +251,44 @@ export default class Game {
       });
   }
 
-  public static checkTie(): boolean {
-    let finish = Game.gameBodyItemsArray.every((item) => {
+  public checkTie(): boolean {
+    let finish = this.gameBodyItemsArray.every((item) => {
       return item.dataset.fill == "true";
     });
     return finish;
   }
 
-  public static async checkFinishGame<T>(): Promise<T | void> {
-    let hasWinner = Game.checkWinner();
+  public async checkFinishGame<T>(): Promise<T | void> {
+    let hasWinner = this.checkWinner();
     if (hasWinner) {
-      Game.setItemsToDisabled();
+      this.setItemsToDisabled();
       await new Promise((resolve, _) => {
         setTimeout(() => {
-          Game.finishGame(false);
+          this.finishGame(false);
           resolve(true);
         }, 1000);
       });
       return;
     } else {
-      let isTied = Game.checkTie();
+      let isTied = this.checkTie();
 
-      isTied && Game.finishGame(isTied);
+      isTied && this.finishGame(isTied);
     }
   }
-  public static setItemsToDisabled() {
-    Game.gameBodyItems.forEach((item) => {
+
+  public setItemsToDisabled() {
+    this.gameBodyItems.forEach((item) => {
       item.style.pointerEvents = "none";
     });
   }
 
-  public static finishGame(isTied: boolean): void {
-    let divModal: HTMLElement | null = document.querySelector("[data-modal-win-content]");
+  public finishGame(isTied: boolean): void {
+    let divModal: HTMLElement | null = document.querySelector(
+      "[data-modal-win-content]"
+    );
 
-    let imgModalEl: HTMLImageElement | null = divModal?.querySelector("img") || null;
+    let imgModalEl: HTMLImageElement | null =
+      divModal?.querySelector("img") || null;
     let h1ModalEl: HTMLElement | null = divModal?.querySelector("h1") || null;
     let h6ModalEl: HTMLElement | null = divModal?.querySelector("h6") || null;
 
@@ -243,20 +296,22 @@ export default class Game {
     imgModalEl?.classList.remove("d-none");
 
     if (isTied) {
-      Game.setDataToModalWhenHasTie(h1ModalEl, h6ModalEl, imgModalEl);
+      this.setDataToModalWhenHasTie(h1ModalEl, h6ModalEl, imgModalEl);
     } else {
-      Game.setDataToModalWhenHasWinner(h6ModalEl, h1ModalEl, imgModalEl);
+      this.setDataToModalWhenHasWinner(h6ModalEl, h1ModalEl, imgModalEl);
     }
 
-    Game.modalWin?.classList.remove("d-none");
+    this.modalWin?.classList.remove("d-none");
   }
-  public static setDataToModalWhenHasTie(
+
+  public setDataToModalWhenHasTie(
     h1ModalEl: HTMLElement | null,
     h6ModalEl: HTMLElement | null,
     imgModalEl: HTMLImageElement | null
   ): void {
-    Game.tiePoints += 1;
-    Game.tiePointsEl && (Game.tiePointsEl.innerText = Game.tiePoints.toString());
+    this.tiePoints += 1;
+    this.tiePointsEl &&
+      (this.tiePointsEl.innerText = this.tiePoints.toString());
 
     if (h1ModalEl && h6ModalEl) {
       h1ModalEl.innerText = "ROUND TIED";
@@ -265,23 +320,25 @@ export default class Game {
     }
   }
 
-  public static setDataToModalWhenHasWinner(
+  public setDataToModalWhenHasWinner(
     h6ModalEl: HTMLElement | null,
     h1ModalEl: HTMLElement | null,
     imgModalEl: HTMLImageElement | null
   ): void {
-    let stringUrl = `/assets/images/svg/icon-${Game.turn}.svg`;
+    let stringUrl = `/assets/images/svg/icon-${this.turn}.svg`;
 
     let stringPlayerWin = "";
 
-    if (Game.turn == Game.player1) {
+    if (this.turn == this.player1) {
       stringPlayerWin = "PLAYER 1 WIN";
-      Game.player1Points += 1;
-      Game.player1PointsEl && (Game.player1PointsEl.innerText = Game.player1Points.toString());
+      this.player1Points += 1;
+      this.player1PointsEl &&
+        (this.player1PointsEl.innerText = this.player1Points.toString());
     } else {
       stringPlayerWin = "PLAYER 2 WIN";
-      Game.player2Points += 1;
-      Game.player2PointsEl && (Game.player2PointsEl.innerText = Game.player2Points.toString());
+      this.player2Points += 1;
+      this.player2PointsEl &&
+        (this.player2PointsEl.innerText = this.player2Points.toString());
     }
 
     h6ModalEl && (h6ModalEl.innerText = stringPlayerWin);
@@ -289,30 +346,32 @@ export default class Game {
     imgModalEl && (imgModalEl.src = stringUrl);
   }
 
-  public static changeTurn(): void {
-    Game.turn == "x" ? (Game.turn = "o") : (Game.turn = "x");
+  public changeTurn(): void {
+    this.turn == "x" ? (this.turn = "o") : (this.turn = "x");
 
-    Game.changeTurnImage();
+    this.changeTurnImage();
   }
 
-  public static changeTurnImage(): void {
-    if (Game.turn == "x") {
-      Game.turnImageX && (Game.turnImageX.style.display = "block");
-      Game.turnImageO && (Game.turnImageO.style.display = "none");
+  public changeTurnImage(): void {
+    if (this.turn == "x") {
+      this.turnImageX && (this.turnImageX.style.display = "block");
+      this.turnImageO && (this.turnImageO.style.display = "none");
     } else {
-      Game.turnImageX && (Game.turnImageX.style.display = "none");
-      Game.turnImageO && (Game.turnImageO.style.display = "block");
+      this.turnImageX && (this.turnImageX.style.display = "none");
+      this.turnImageO && (this.turnImageO.style.display = "block");
     }
   }
-  public static getMarkImageOutlineSource(): string {
-    if (Game.turn == "x") {
+
+  public getMarkImageOutlineSource(): string {
+    if (this.turn == "x") {
       return "icon-x-outline.svg";
     } else {
       return "icon-o-outline.svg";
     }
   }
-  public static getMarkImageFillSource(): string {
-    if (Game.turn == "x") {
+
+  public getMarkImageFillSource(): string {
+    if (this.turn == "x") {
       return "icon-x.svg";
     } else {
       return "icon-o.svg";

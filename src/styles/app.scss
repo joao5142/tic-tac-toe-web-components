@@ -1,9 +1,11 @@
 @import "~bootstrap/scss/bootstrap";
 @import "./_reset.scss";
 @import "./_global.scss";
+
 body {
   background: $dark-navy;
 }
+
 #app,
 body {
   height: 100vh;
@@ -12,6 +14,7 @@ body {
 
   font-family: "Outfit", sans-serif;
 }
+
 * {
   @media (max-width: 300px) {
     & {
@@ -23,6 +26,7 @@ body {
     }
   }
 }
+
 #app,
 .container {
   display: flex;
@@ -30,6 +34,7 @@ body {
   align-items: center;
   justify-content: center;
 }
+
 .container {
   max-width: 500px;
   min-width: 500px;
@@ -41,6 +46,7 @@ body {
     width: 100%;
   }
 }
+
 .logo {
   height: 34px;
   @media (max-width: 300px) {
@@ -97,6 +103,7 @@ body {
         fill: $semi-dark-navy;
       }
     }
+
     &:hover:not(&--selected) {
       background: $semi-dark-navy;
     }
@@ -111,6 +118,7 @@ body {
 
 .game-play {
   width: 100%;
+
   &__header {
     display: flex;
     align-items: center;
@@ -120,6 +128,7 @@ body {
       flex: 1;
     }
   }
+
   &__header-turn,
   &__header-restart {
     padding: 10px 15px;
@@ -142,6 +151,7 @@ body {
       }
     }
   }
+
   &__header-restart {
     svg {
       width: 25px;
@@ -154,6 +164,7 @@ body {
       }
     }
   }
+
   &__header-turn {
     background: $semi-dark-navy;
     box-shadow: inset 0 -0.2rem 0 #111c22;
@@ -163,6 +174,7 @@ body {
       width: 20px;
     }
   }
+
   &__header-restart {
     width: 70px;
 
@@ -179,7 +191,10 @@ body {
     gap: 20px;
     grid-template-columns: repeat(3, 1fr);
   }
+
   &__body {
+    user-select: none;
+
     min-height: 500px;
     grid-template-rows: repeat(3, 1fr);
     > * {
@@ -197,10 +212,12 @@ body {
       }
     }
   }
+
   &__footer span {
     font-size: 1rem;
     opacity: 0.85;
   }
+
   &__footer h3 {
     font-weight: bold;
   }
